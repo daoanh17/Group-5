@@ -1,0 +1,26 @@
+﻿@page
+@model RazorArticlePage.Pages.Account.IndexModel
+@{
+    ViewData["Title"] = "Account Dashboard";
+}
+
+<h1>Account Dashboard</h1>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>Welcome, @User.Identity.Name!</p>
+
+    <ul>
+        <li><a asp-page="/Account/Profile">View Profile</a></li>
+        <li>
+            <form method="post" asp-page="/Account/Logout">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </li>
+    </ul>
+}
+else
+{
+    <p>You are not logged in.</p>
+    <a asp-page="/Account/Login" class="btn btn-primary">Login</a>
+}
